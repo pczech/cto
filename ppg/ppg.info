@@ -1,0 +1,5 @@
+name = PPG
+description = Plugin Playground
+package = CTools API Training
+core = 7.x
+dependencies[] = cto

@@ -1,0 +1,5 @@
+name = CTO Tools
+description = Contains common tools for CTools API Training modules.
+package = CTools API Training
+core = 7.x
+dependencies[] = ctools

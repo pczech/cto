@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * Contains examples demonstrating CTools Plugin API.
+ */
+
+
+module_load_include('inc', 'cto', 'includes/tools');
+
+/**
+ * Implements hook_menu().
+ */
+function ppg_menu() {
+  $items = array();
+
+  $items['ppg'] = array(
+    'title' => 'Plugin API',
+    'page callback' => 'ppg_ui_pcb_main',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['ppg/list'] = array(
+    'title' => 'List',
+    'page callback' => 'ppg_pcb_list',
+    'access callback' => TRUE,
+    'type' => MENU_NORMAL_ITEM,
+    'weight' => 1,
+  );
+
+  return $items;
+}
+
+
+/**
+ * Page callback: Plugin API menu.
+ */
+function ppg_pcb_main() {
+  return t('Select CTools Plugin action from menu.');
+}
+
+
+/**
+ * Page callback: Plugin API: ctools_get_plugins().
+ */
+function ppg_pcb_list() {
+  ctools_get_plugins();
+}
