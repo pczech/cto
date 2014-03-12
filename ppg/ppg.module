@@ -16,7 +16,7 @@ function ppg_menu() {
 
   $items['ppg'] = array(
     'title' => 'Plugin API',
-    'page callback' => 'ppg_ui_pcb_main',
+    'page callback' => 'ppg_pcb_main',
     'access callback' => TRUE,
     'type' => MENU_NORMAL_ITEM,
   );
@@ -45,5 +45,10 @@ function ppg_pcb_main() {
  * Page callback: Plugin API: ctools_get_plugins().
  */
 function ppg_pcb_list() {
-  ctools_get_plugins();
+  ctools_include('plugins');
+  $plugin_types = ctools_plugin_get_plugin_type_info();
+  dpm($plugin_types);
+  $ct_plugins = ctools_get_plugins('ctools', 'content_types');
+  dpm($ct_plugins);
+  return t('Done');
 }
