@@ -47,8 +47,13 @@ function ppg_pcb_main() {
 function ppg_pcb_list() {
   ctools_include('plugins');
   $plugin_types = ctools_plugin_get_plugin_type_info();
-  dpm($plugin_types);
-  $ct_plugins = ctools_get_plugins('ctools', 'content_types');
-  dpm($ct_plugins);
+  dpm($plugin_types, 'plugin_types');
+
+  $plugins = ctools_get_plugins('ctools', 'access');
+  dpm($plugins, 'type: access');
+
+  $plugins = ctools_get_plugins('ctools', 'contexts');
+  dpm($plugins, 'type: contexts');
+
   return t('Done');
 }
