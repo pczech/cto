@@ -49,11 +49,16 @@ function ppg_pcb_list() {
   $plugin_types = ctools_plugin_get_plugin_type_info();
   dpm($plugin_types, 'plugin_types');
 
+  dpm('CTools');
+
   $plugins = ctools_get_plugins('ctools', 'access');
   dpm($plugins, 'type: access');
 
   $plugins = ctools_get_plugins('ctools', 'arguments');
   dpm($plugins, 'type: arguments');
+
+  $plugins = ctools_get_plugins('ctools', 'cache');
+  dpm($plugins, 'type: cache');
 
   $plugins = ctools_get_plugins('ctools', 'content_types');
   dpm($plugins, 'type: content_types');
@@ -61,8 +66,33 @@ function ppg_pcb_list() {
   $plugins = ctools_get_plugins('ctools', 'contexts');
   dpm($plugins, 'type: contexts');
 
+  $plugins = ctools_get_plugins('ctools', 'export_ui');
+  dpm($plugins, 'type: export_ui');
+
   $plugins = ctools_get_plugins('ctools', 'relationships');
   dpm($plugins, 'type: relationships');
+
+  dpm('CTools->Page manager');
+
+  $plugins = ctools_get_plugins('page_manager', 'task_handlers');
+  dpm($plugins, 'type: task_handlers');
+
+  $plugins = ctools_get_plugins('page_manager', 'tasks');
+  dpm($plugins, 'type: tasks');
+
+  dpm('Panels');
+
+  $plugins = ctools_get_plugins('panels', 'cache');
+  dpm($plugins, 'type: cache');
+
+  $plugins = ctools_get_plugins('panels', 'display_renderers');
+  dpm($plugins, 'type: display_renderers');
+
+  $plugins = ctools_get_plugins('panels', 'layouts');
+  dpm($plugins, 'type: layouts');
+
+  $plugins = ctools_get_plugins('panels', 'styles');
+  dpm($plugins, 'type: styles');
 
   return t('Done');
 }
