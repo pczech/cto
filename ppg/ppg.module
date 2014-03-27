@@ -80,6 +80,9 @@ function ppg_pcb_list() {
   $plugins = ctools_get_plugins('page_manager', 'tasks');
   dpm($plugins, 'type: tasks');
 
+  $plugins = ctools_get_plugins('page_manager', 'page_wizards');
+  dpm($plugins, 'type: page_wizards');
+
   dpm('Panels');
 
   $plugins = ctools_get_plugins('panels', 'cache');
