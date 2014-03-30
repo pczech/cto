@@ -97,5 +97,12 @@ function ppg_pcb_list() {
   $plugins = ctools_get_plugins('panels', 'styles');
   dpm($plugins, 'type: styles');
 
+  $core_modules = array('aggregator', 'block', 'blog', 'blogapi', 'book', 'color', 'comment', 'contact', 'drupal', 'filter', 'forum', 'help', 'legacy', 'locale', 'menu', 'node', 'path', 'ping', 'poll', 'profile', 'search', 'statistics', 'taxonomy', 'throttle', 'tracker', 'upload', 'user', 'watchdog', 'system');
+  foreach($core_modules as $module) {
+    $blocks[$module] = module_invoke($module, 'block_info');
+  }
+
+  dpm($blocks, 'blocks');
+
   return t('Done');
 }
