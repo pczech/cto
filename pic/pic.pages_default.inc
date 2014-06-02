@@ -8,8 +8,28 @@
  * See ctools Advanced Help, ctools/ctools_plugin_example.
  */
 
+
 /**
- * Default (panels) pages.
+ * Implements hook_default_page_manager_pages().
+ *
+ * For details see above description.
+ */
+function pic_default_page_manager_pages() {
+  $pages = array();
+  $path = drupal_get_path('module', 'pic') . '/pages';
+  $files = drupal_system_listing('/\.inc$/', $path, 'name', 0);
+  dpm($path);
+  dpm($files);
+  foreach ($files as $file) {
+    include_once $file->uri;
+    $pages[$page->name] = $page;
+  }
+  return $pages;
+}
+
+
+/**
+ * Implements hook_default_page_manager_pages().
  *
  * To pick up this file, the module needs to implement
  * hook_ctools_plugin_api() - See pic_ctools_plugin_api() in
@@ -18,28 +38,16 @@
  * Note the naming of the file: <modulename>.pages_default.inc
  * With this naming, no additional code needs to be provided. CTools will just
  * find the file.
- * The name of the hook is <modulename>_default_page_manager_pages()
+ * The name of the hook is <modulename>_default_page_manager_pages().
+ *
+ * Version 1 - page definitions within this file.
+ * To activate remove _DISABLED from the function name.
  */
-/*
-function pic_default_page_manager_pages() {
+function pic_default_page_manager_pages_DISABLED() {
   cto_trace_funct();
   $pages = array();
   $pages['hello'] = pic_pages_hello_page();
 
-  return $pages;
-}
-*/
-
-
-function pic_default_page_manager_pages() {
-  $pages = array();
-  $path = drupal_get_path('module', 'pic') . '/pages';
-  $files = drupal_system_listing('.inc$', $path, 'name', 0);
-  dpm($files);
-  foreach($files as $file) {
-    include_once $file->filename;
-    $pages[$page->name] = $page;
-  }
   return $pages;
 }
 
@@ -107,31 +115,31 @@ function pic_pages_hello_page() {
   $display->uuid = '61079c7c-6ae4-464c-bfb5-0313bbd9f9db';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-259d4b2a-987f-4644-b713-ffe6669821b1';
-    $pane->panel = 'middle';
-    $pane->type = 'custom';
-    $pane->subtype = 'custom';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'admin_title' => '',
-      'title' => '',
-      'body' => 'Hello!',
-      'format' => 'filtered_html',
-      'substitute' => TRUE,
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '259d4b2a-987f-4644-b713-ffe6669821b1';
-    $display->content['new-259d4b2a-987f-4644-b713-ffe6669821b1'] = $pane;
-    $display->panels['middle'][0] = 'new-259d4b2a-987f-4644-b713-ffe6669821b1';
+  $pane = new stdClass();
+  $pane->pid = 'new-259d4b2a-987f-4644-b713-ffe6669821b1';
+  $pane->panel = 'middle';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => '',
+    'title' => '',
+    'body' => 'Hello!',
+    'format' => 'filtered_html',
+    'substitute' => TRUE,
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '259d4b2a-987f-4644-b713-ffe6669821b1';
+  $display->content['new-259d4b2a-987f-4644-b713-ffe6669821b1'] = $pane;
+  $display->panels['middle'][0] = 'new-259d4b2a-987f-4644-b713-ffe6669821b1';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-259d4b2a-987f-4644-b713-ffe6669821b1';
   $handler->conf['display'] = $display;
@@ -142,9 +150,11 @@ function pic_pages_hello_page() {
 
 
 /**
- * Implements hook_default_panels_mini.
+ * Implements hook_default_panels_mini().
  *
- * See ctools_export_load_object and _ctools_export_get_defaults
+ * Mini panels in code example. Hooks of ctools submodules are not documented.
+ * See ctools_export_load_object() and _ctools_export_get_defaults() for
+ * details.
  */
 function pic_default_panels_mini() {
   cto_trace_funct();
