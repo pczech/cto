@@ -1,0 +1,6 @@
+name = PIC
+description = Pages in code demo
+package = CTools API Training
+core = 7.x
+dependencies[] = page_manager
+dependencies[] = cto

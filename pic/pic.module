@@ -1,0 +1,52 @@
+<?php
+
+/**
+ * @file
+ * Contains example demonstrating (Panels) pages in code.
+ *
+ * See ctools Advanced Help, ctools/ctools_plugin_example.
+ */
+
+
+module_load_include('inc', 'cto', 'includes/tools');
+
+/**
+ * Implements hook_ctools_plugin_api().
+ *
+ * On the hook CTools will pick up default pages in
+ * <modulename>.pages_default.inc
+ */
+function pic_ctools_plugin_api($module, $api) {
+  cto_trace_funct();
+  dpm($module, 'module');
+  dpm($api, 'api');
+  /*
+   * Example result o cache clear:
+   *   panels, layouts
+   *   page_manager, pages_default
+   *   panels_mini, panels_default
+   *   panels, layouts
+   *   panels, styles
+   *
+   * Result if page manager is opened:
+   *   page_manager, pages_default
+   *
+   * Result if mini panels are opened:
+   *   panels_mini, panels_default
+   */
+  // if ($module == 'panels_mini' && $api == 'panels_default') {
+  if ($module == 'page_manager' && $api == 'pages_default') {
+    /*
+     * 'version' - The minimum API version this system supports. If this API
+     *    version is incompatible then the .inc file will not be loaded.
+     * 'path' - Where to find the file. Optional; if not specified it will be
+     *    the module's directory.
+     * 'file' - an alternative version of the filename. If not specified it
+     *    will be $module.$api.inc (here pic.pages_default.inc)
+     */
+    return array(
+      'version' => 1,
+      'file' => 'pic.pages_default.inc',
+    );
+  }
+}
